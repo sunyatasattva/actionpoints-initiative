@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="min/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="lib/bootstrap-glyphicons.css" />
+<link rel="stylesheet" type="text/css" href="src/css/app.css" />
+<meta charset=utf-8 />
+<title>Araman Initiative Tracker</title>
+</head>
+<body>
+  <section id="ini">
+    <h2>Initialize</h2>
+      <div>
+      	<form class="form-inline" action="javascript:void(0);">
+	        <input id='chrName' type='text' placeholder="Character name…" class="form-control" />
+	        <input id='chrSpeed' type='text' size='3' placeholder="Speed" class="form-control" />
+	        <button id="addCharacter" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"> </span>Add</button>
+	        <div id='feedback' class="alert alert-info">Add the battle participants</div>
+      	</form>
+      </div>
+      <button id="initialize" class="btn btn-warning btn-block"><span class="glyphicon glyphicon-ok"> </span>Initialize</button>
+  </section>
+  <section id="track">
+	  <h3>Global cycle: <span class="badge info">0</span></h3>
+	  <ol id="characterList" class="list-group">
+	  </ol>
+	  <form class="form-inline" action="javascript:void(0);">
+	  	<input id="cooldown" type="text" size="3" placeholder="AP" class="form-control"/>
+	  	<button class="btn btn-primary" id="passTurn"><span class="glyphicon glyphicon-repeat"> </span>Pass Turn</button>
+	  </form>
+  </section>
+  <script src="src/js/app.js"></script>
+</body>
+</html>

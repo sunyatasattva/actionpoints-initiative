@@ -1,0 +1,49 @@
+body { 
+	background-color: #2b2b2b;
+	color: #f9c56d;
+	/*font-family: Monaco, monospace; */
+}
+
+#ini,
+#track {
+	margin: 0 auto;
+	max-width: 600px;
+}
+
+#track { display: none; }
+
+#chrName  { width: 60%; }
+#chrSpeed { width: 15%; }
+
+#characterList { list-style-position: inside; }
+
+#characterList .badge {
+	float:  right;
+	margin: 0 10px;
+}
+
+#characterList li:first-child { color: #5cb85c; }
+
+#characterList li { 
+	margin-bottom: 1em;
+	position:      relative;	
+}
+
+#cooldown { width: 50px;}
+
+.form-inline input,
+.form-inline .btn { margin-bottom: 1em; }
+
+
+.chrName { cursor: pointer; }
+
+h3 .badge { 
+	font-size:     inherit;
+	margin-bottom: 5px;
+}
+
+.badge.info { background-color: #357ebd; }
+.badge.success { background-color: #5cb85c; }
+.badge.danger { background-color: #d9534f; }
+
+.caret { border-top-color: inherit; }
