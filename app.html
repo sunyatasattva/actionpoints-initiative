@@ -14,21 +14,21 @@
     <h2>Initialize</h2>
       <div>
       	<form class="form-inline" action="javascript:void(0);">
-	        <input id='chrName' type='text' placeholder="Character name…" class="form-control" />
-	        <input id='chrSpeed' type='text' size='3' placeholder="Speed" class="form-control" />
-	        <button id="addCharacter" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"> </span>Add</button>
+	        <input type='text' class="form-control" tabindex="1" id='chrName' placeholder="Character name…"  />
+	        <input type='text' class="form-control" tabindex="2" id='chrSpeed' placeholder="Speed" size='3' />
+	        <button id="addCharacter" tabindex="3" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"> </span>Add</button>
 	        <div id='feedback' class="alert alert-info">Add the battle participants</div>
       	</form>
       </div>
-      <button id="initialize" class="btn btn-warning btn-block"><span class="glyphicon glyphicon-ok"> </span>Initialize</button>
+      <button id="initialize" tabindex="-1" class="btn btn-warning btn-block"><span class="glyphicon glyphicon-ok"> </span>Initialize</button>
   </section>
   <section id="track">
 	  <h3>Global cycle: <span class="badge info">0</span></h3>
 	  <ol id="characterList" class="list-group">
 	  </ol>
 	  <form class="form-inline" action="javascript:void(0);">
-	  	<input id="cooldown" type="text" size="3" placeholder="AP" class="form-control"/>
-	  	<button class="btn btn-primary" id="passTurn"><span class="glyphicon glyphicon-repeat"> </span>Pass Turn</button>
+	  	<input id="cooldown" type="text" tabindex="-1" size="3" placeholder="AP" class="form-control"/>
+	  	<button class="btn btn-primary" tabindex="-1" id="passTurn"><span class="glyphicon glyphicon-repeat"> </span>Pass Turn</button>
 	  </form>
   </section>
   
@@ -36,28 +36,28 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <button type="button" class="close" tabindex="-1" data-dismiss="modal" aria-hidden="true">&times;</button>
 	        <h4 class="modal-title">Add status</h4>
 	      </div>
 	      <div class="modal-body">
 	        <form class="form-inline">
-				<input type="text" class="form-control" id="statusName" placeholder="Status name…">
-				<input type='text' class="form-control" id="statusDuration" placeholder="Duration" size="3" />
+				<input type="text" class="form-control" tabindex="-1" id="statusName" placeholder="Status name…">
+				<input type='text' class="form-control" tabindex="-1" id="statusDuration" placeholder="Duration" size="3" />
 				<div id="radioControls">
 					<label>
-				    	<input type="radio" name="statusType" value="positive" checked>
+				    	<input type="radio" tabindex="-1" name="statusType" value="positive" checked>
 				    	Positive
 				    </label>
 				    <label>
-				    	<input type="radio" name="statusType" value="negative">
+				    	<input type="radio" tabindex="-1" name="statusType" value="negative">
 				    	Negative
 				    </label>
 				</div>
 			</form>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" data-dismiss="modal">Add Status</button>
+	        <button type="button" tabindex="-1" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" tabindex="-1" class="btn btn-primary" data-dismiss="modal">Add Status</button>
 	      </div>
 	    </div>
 	  </div>

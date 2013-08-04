@@ -118,13 +118,18 @@ Battle = {};
     characters.forEach(function(chr){
       cycleInfo     = $('<span>').addClass('badge').html(chr.cycle);
       turnInfo      = $('<span>').addClass('badge info').html(chr.ct + ' / ' + chr.ap);
-      characterInfo = $('<li>').addClass('chr').html(chr.name)
+      characterInfo = $('<li>').addClass('chr').html('<span class="chrName" data-toggle="dropdown">' + chr.name + ' <b class="caret"></b></span>')
+      dropdown      = $('<ul>').addClass('dropdown-menu');
+      
+      dropdown.append( $('<li>').html('<a class="removeChr">Remove character</a>') );
+      dropdown.append( $('<li>').html('<a class="addStatus" data-toggle="modal" href="#addStatus">Add status</a>') );
       
       chr.cycle > globalCycle ? cycleInfo.addClass('danger') : cycleInfo.addClass('success');
             
       characterInfo
       .append(cycleInfo)
       .append(turnInfo)
+      .append(dropdown)
       .data('chr', chr);
       
       $('#characterList').append(characterInfo);
@@ -161,12 +166,16 @@ $('#addCharacter').click(function(){
 	  $('#feedback')
 	  .html('Please insert a character name')
 	  .removeClass('alert-info alert-success');
+	  
+	  $('#chrName').focus();
 	  return false;
   }
   else if( $('#chrSpeed').val() === '' ) {
 	  $('#feedback')
 	  .html('Please insert a speed value for ' + $('#chrName').val())
 	  .removeClass('alert-info alert-success');
+	  
+	  $('#chrSpeed').focus();
 	  return false;
   }
   else {
@@ -179,6 +188,12 @@ $('#addCharacter').click(function(){
 	  .html(chr.name + ' joined the combat')
 	  .removeClass('alert-info')
 	  .addClass('alert-success');
+	  
+	  $('#chrName')
+	  .add('#chrSpeed')
+	  .val('')
+	  
+	  $('#chrName').focus();
 	  
 	  return chr;
   }
