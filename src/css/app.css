@@ -1,16 +1,52 @@
+html { height: 100%; }
+
 body { 
 	background-color: #2b2b2b;
 	color: #f9c56d;
+	height: 100%;
 	/*font-family: Monaco, monospace; */
 }
 
+h2,
+h3 {
+	margin-top:  0;
+	padding-top: 20px;
+}
+
 #ini,
-#track {
+#track,
+#footer {
 	margin: 0 auto;
 	max-width: 600px;
 }
 
+#ini,
+#track {
+	margin-bottom: -60px;
+	min-height:    100%;
+}
+
 #track { display: none; }
+
+#footer { 
+	color:  #666;
+	font-size: smaller;
+	line-height: 80px;
+	vertical-align: bottom;
+	height: 50px;
+	overflow: hidden;
+}
+
+#footer .credits {
+	background: url('../../assets/lacan-gray.png') no-repeat top right;
+	background-size: 50px 50px;
+	float: right;
+	padding-right: 60px;
+}
+
+.credits a:hover {
+	text-decoration: none;
+}
 
 #chrName,
 #statusName  { width: 60%; }

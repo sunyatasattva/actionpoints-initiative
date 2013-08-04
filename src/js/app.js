@@ -262,7 +262,9 @@ $('#initialize').click(function(){
   }
   Battle.initialize();
   
-  $('#ini').empty();
+  $('#ini')
+  .empty()
+  .hide();
   $('#track').show();
   
   return Battle.characters;
