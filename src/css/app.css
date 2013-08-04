@@ -12,8 +12,10 @@ body {
 
 #track { display: none; }
 
-#chrName  { width: 60%; }
-#chrSpeed { width: 15%; }
+#chrName,
+#statusName  { width: 60%; }
+#chrSpeed,
+#statusDuration { width: 15%; }
 
 #characterList { list-style-position: inside; }
 
@@ -47,3 +49,9 @@ h3 .badge {
 .badge.danger { background-color: #d9534f; }
 
 .caret { border-top-color: inherit; }
+
+.modal { color: #2b2b2b; }
+
+.modal-header { margin-bottom: 30px; }
+
+.modal-body { padding: 0 20px; }

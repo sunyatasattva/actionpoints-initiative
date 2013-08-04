@@ -14,10 +14,10 @@ Battle = {};
 	  this.statii = [];
   }
   
-  function Status(name, type, duration){
+  function Status(name, duration, type){
 	  this.name     = name;
 	  this.type     = type;
-	  this.duration = duration;
+	  this.life     = duration;
   }
 
   function initialize(){
@@ -34,11 +34,11 @@ Battle = {};
           
       cycleInfo     = $('<span>').addClass('badge success').html(chr.cycle);
       turnInfo      = $('<span>').addClass('badge info').html(chr.ct + ' / ' + chr.ap);
-      characterInfo = $('<li>').html('<span class="chrName" data-toggle="dropdown">' + chr.name + ' <b class="caret"></b></span>');
+      characterInfo = $('<li>').addClass('chr').html('<span class="chrName" data-toggle="dropdown">' + chr.name + ' <b class="caret"></b></span>');
       dropdown      = $('<ul>').addClass('dropdown-menu');
       
       dropdown.append( $('<li>').html('<a class="removeChr">Remove character</a>') );
-      dropdown.append( $('<li>').html('<a class="addStatus">Add status</a>') );
+      dropdown.append( $('<li>').html('<a class="addStatus" data-toggle="modal" href="#addStatus">Add status</a>') );
       
       characterInfo
       .append(cycleInfo)
@@ -118,7 +118,7 @@ Battle = {};
     characters.forEach(function(chr){
       cycleInfo     = $('<span>').addClass('badge').html(chr.cycle);
       turnInfo      = $('<span>').addClass('badge info').html(chr.ct + ' / ' + chr.ap);
-      characterInfo = $('<li>').html(chr.name)
+      characterInfo = $('<li>').addClass('chr').html(chr.name)
       
       chr.cycle > globalCycle ? cycleInfo.addClass('danger') : cycleInfo.addClass('success');
             
@@ -149,8 +149,10 @@ Battle = {};
   Battle.activeCharacter = activeCharacter;
   Battle.initialize      = initialize;
   Battle.Character       = Character;
+  Battle.Status          = Status;
   Battle.passTurn        = passTurn;
   Battle.removeCharacter = removeCharacter;
+  Battle.addStatus       = addStatus;
   
 }(Battle));
 
@@ -211,6 +213,22 @@ $('#passTurn').click(function(){
 });
 
 $('#characterList').on('click', '.removeChr', function(e){
-	var chr = $(e.target).closest('li').data('chr');
+	var chr = $(e.target).closest('li.chr').data('chr');
 	Battle.removeCharacter(chr);
+});
+
+$('#characterList').on('click', '.addStatus', function(e){
+	var chr = $(e.target).closest('li.chr').data('chr');
+	$('#addStatus').data('target', chr);
+});
+
+$('#addStatus .btn-primary').on('click', function(e){
+	var target         = $('#addStatus').data('target');
+	var statusName     = $('#statusName').val();
+	var statusDuration = $('#statusDuration').val();
+	var statusType     = $('#addStatus #radioControls input:checked').val();
+	
+	var status         = new Battle.Status(statusName, statusDuration, statusType);
+	
+	Battle.addStatus(status, target);
 });

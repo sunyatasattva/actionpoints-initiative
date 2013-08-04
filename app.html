@@ -31,6 +31,37 @@
 	  	<button class="btn btn-primary" id="passTurn"><span class="glyphicon glyphicon-repeat"> </span>Pass Turn</button>
 	  </form>
   </section>
+  
+  <div class="modal fade" id="addStatus">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title">Add status</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form class="form-inline">
+				<input type="text" class="form-control" id="statusName" placeholder="Status name…">
+				<input type='text' class="form-control" id="statusDuration" placeholder="Duration" size="3" />
+				<div id="radioControls">
+					<label>
+				    	<input type="radio" name="statusType" value="positive" checked>
+				    	Positive
+				    </label>
+				    <label>
+				    	<input type="radio" name="statusType" value="negative">
+				    	Negative
+				    </label>
+				</div>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">Add Status</button>
+	      </div>
+	    </div>
+	  </div>
+  </div>
   <script src="src/js/app.js"></script>
 </body>
 </html>
