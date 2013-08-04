@@ -7,7 +7,7 @@ Battle = {};
   
   function Character(name, speed){
 	  this.name   = name;
-	  this.speed  = speed;
+	  this.speed  = +speed;
 	  this.ap     = this.speed + Math.ceil(Math.random()*10);
 	  this.ct     = 0;
 	  this.cycle  = 0;
@@ -220,6 +220,11 @@ $('#addCharacter').click(function(){
 	  
 	  $('#chrSpeed').focus();
 	  return false;
+  }
+  else if( isNaN($('#chrSpeed').val()) ) {
+	  $('#feedback')
+	  .html('Please insert a valid speed value for ' + $('#chrName').val())
+	  .removeClass('alert-info alert-success');
   }
   else {
 	  var name  =  $('#chrName').val();
