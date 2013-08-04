@@ -326,3 +326,11 @@ $('#characterList').on('click', '.hideStatii', function(e){
 	.addClass('displayStatii')
 	.text('Display statii');
 });
+
+$('#characterList').on('click', '.status', function(e){
+	var status = $(e.target).data('status');
+	var chr    = $(e.target).closest('li.chr').data('chr');
+	
+	Battle.removeStatus(status.name, chr);
+	e.target.remove();
+});
