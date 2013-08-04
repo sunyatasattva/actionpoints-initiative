@@ -99,3 +99,9 @@ h3 .badge {
 .modal-header { margin-bottom: 30px; }
 
 .modal-body { padding: 0 20px; }
+
+.modal-title { display: inline-block; }
+.modal-header .alert {
+	display: none;
+	margin:  0 20px;
+}

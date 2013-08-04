@@ -291,9 +291,25 @@ $('#addStatus .btn-primary').on('click', function(e){
 	var statusDuration = $('#statusDuration').val();
 	var statusType     = $('#addStatus #radioControls input:checked').val();
 	
-	var status         = new Battle.Status(statusName, statusDuration, statusType);
-	
-	Battle.addStatus(status, target);
+	if( Battle.getStatus(statusName, target) ) {
+		$('#addStatus .alert')
+		.html(target.name + ' is already affected by ' + statusName)
+		.removeClass('alert-info')
+		.css('display', 'inline-block');
+		return false;
+	}
+	else if( isNaN(statusDuration) ) {
+		$('#addStatus .alert')
+		.html('Invalid status duration')
+		.removeClass('alert-info')
+		.css('display', 'inline-block');
+		return false;
+	}
+	else {
+		var status = new Battle.Status(statusName, statusDuration, statusType);
+		Battle.addStatus(status, target);
+		$('#addStatus .alert').hide();
+	}
 });
 
 $('#characterList').on('click', '.displayStatii', function(e){
