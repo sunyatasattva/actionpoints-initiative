@@ -32,17 +32,20 @@ Battle = {};
           cycleInfo,
           dropdown;
           
-      cycleInfo     = $('<span>').addClass('badge success').html(chr.cycle);
-      turnInfo      = $('<span>').addClass('badge info').html(chr.ct + ' / ' + chr.ap);
-      characterInfo = $('<li>').addClass('chr').html('<span class="chrName" data-toggle="dropdown">' + chr.name + ' <b class="caret"></b></span>');
-      dropdown      = $('<ul>').addClass('dropdown-menu');
+      cycleInfo       = $('<span>').addClass('badge success').html(chr.cycle);
+      turnInfo        = $('<span>').addClass('badge info').html(chr.ct + ' / ' + chr.ap);
+      characterInfo   = $('<li>').addClass('chr').html('<span class="chrName" data-toggle="dropdown">' + chr.name + ' <b class="caret"></b></span>');
+      characterStatii = $('<ul>').addClass('statii');
+      dropdown        = $('<ul>').addClass('dropdown-menu');
       
-      dropdown.append( $('<li>').html('<a class="removeChr">Remove character</a>') );
       dropdown.append( $('<li>').html('<a class="addStatus" data-toggle="modal" href="#addStatus">Add status</a>') );
+      dropdown.append( $('<li>').html('<a class="displayStatii">Display statii</a>') );
+      dropdown.append( $('<li>').html('<a class="removeChr">Remove character</a>') );
       
       characterInfo
       .append(cycleInfo)
       .append(turnInfo)
+      .append(characterStatii)
       .append(dropdown)
       .data('chr', chr);
       
@@ -120,19 +123,22 @@ Battle = {};
     $('#characterList').empty();
     $('h3 .badge').html(globalCycle);
     characters.forEach(function(chr){
-      cycleInfo     = $('<span>').addClass('badge').html(chr.cycle);
-      turnInfo      = $('<span>').addClass('badge info').html(chr.ct + ' / ' + chr.ap);
-      characterInfo = $('<li>').addClass('chr').html('<span class="chrName" data-toggle="dropdown">' + chr.name + ' <b class="caret"></b></span>')
-      dropdown      = $('<ul>').addClass('dropdown-menu');
+      cycleInfo       = $('<span>').addClass('badge').html(chr.cycle);
+      turnInfo        = $('<span>').addClass('badge info').html(chr.ct + ' / ' + chr.ap);
+      characterInfo   = $('<li>').addClass('chr').html('<span class="chrName" data-toggle="dropdown">' + chr.name + ' <b class="caret"></b></span>')
+      characterStatii = $('<ul>').addClass('statii');
+      dropdown        = $('<ul>').addClass('dropdown-menu');
       
-      dropdown.append( $('<li>').html('<a class="removeChr">Remove character</a>') );
       dropdown.append( $('<li>').html('<a class="addStatus" data-toggle="modal" href="#addStatus">Add status</a>') );
+      dropdown.append( $('<li>').html('<a class="displayStatii">Display statii</a>') );
+      dropdown.append( $('<li>').html('<a class="removeChr">Remove character</a>') );
       
       chr.cycle > globalCycle ? cycleInfo.addClass('danger') : cycleInfo.addClass('success');
             
       characterInfo
       .append(cycleInfo)
       .append(turnInfo)
+      .append(characterStatii)
       .append(dropdown)
       .data('chr', chr);
       
@@ -277,4 +283,40 @@ $('#addStatus .btn-primary').on('click', function(e){
 	var status         = new Battle.Status(statusName, statusDuration, statusType);
 	
 	Battle.addStatus(status, target);
+});
+
+$('#characterList').on('click', '.displayStatii', function(e){
+	var el   = $(e.target).closest('li.chr');
+	var list = el.find('.statii');
+	var chr  = el.data('chr');
+	
+	list.empty();
+	
+	chr.statii.forEach(function(status){
+		var statusInfo = $('<li>').addClass('status ' + status.type).html(status.name + '<span class="badge">' + status.life + '</span>');
+		statusInfo.data('status', status);
+		
+		status.type === 'positive' ? statusInfo.find('.badge').addClass('success') : statusInfo.find('.badge').addClass('danger');
+		
+		list.append(statusInfo);
+	})
+	
+	list.slideDown();
+	
+	$(e.target)
+	.removeClass('displayStatii')
+	.addClass('hideStatii')
+	.text('Hide statii');
+});
+
+$('#characterList').on('click', '.hideStatii', function(e){
+	var el   = $(e.target).closest('li.chr');
+	var list = el.find('.statii');
+	
+	list.slideUp();
+	
+	$(e.target)
+	.removeClass('hideStatii')
+	.addClass('displayStatii')
+	.text('Display statii');
 });

@@ -24,9 +24,9 @@ body {
 	margin: 0 10px;
 }
 
-#characterList li:first-child { color: #5cb85c; }
+#characterList > li:first-child { color: #5cb85c; }
 
-#characterList li { 
+#characterList > li { 
 	margin-bottom: 1em;
 	position:      relative;	
 }
@@ -38,6 +38,22 @@ body {
 
 
 .chrName { cursor: pointer; }
+
+.statii { 
+	color:           #f9c56d;
+	display:         none;
+	font-size:       smaller;
+	list-style-type: none;
+	margin-top:      1em;
+}
+
+#characterList .statii .badge {
+	float:     left;
+	font-size: smaller;
+	width:     25px;
+}
+
+li.status { margin: 5px 0; }
 
 h3 .badge { 
 	font-size:     inherit;
