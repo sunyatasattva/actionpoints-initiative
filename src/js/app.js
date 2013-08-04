@@ -70,10 +70,8 @@ Battle = {};
       activeCharacter.ct     = activeCharacter.ct % activeCharacter.ap;
     }
     
-    activeCharacter.statii.forEach(function(status){
-	    countdownStatus(status, activeCharacter);
-    });
-  
+    statusPhase(activeCharacter);
+    
     function getNextCharacter(){
     
       var nextCharacter;
@@ -170,18 +168,26 @@ Battle = {};
   
   function removeStatus(status, chr){
   	var status = getStatus(status, chr);
-  	var idx    = chr.statii.indexOf(idx);
+  	var idx    = chr.statii.indexOf(status);
   	
   	chr.statii.splice(idx, 1);
   	
   	return status;
   }
   
-  function countdownStatus(status, chr){
-  	status.life--;
+  function statusPhase(chr){
+  	var removedStatii = [];
+  
+  	chr.statii.forEach(function(status){
+	  	status.life--;
   	
-  	if( status.life === 0 )
-  		removeStatus(status.name, chr)
+	  	if( status.life === 0 )
+  			removedStatii.push(status.name);
+    });
+    
+    removedStatii.forEach(function(status){
+	    removeStatus(status, chr)
+    })
   }
   
   Battle.globalCycle     = globalCycle;
