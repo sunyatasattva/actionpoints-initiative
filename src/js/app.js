@@ -17,7 +17,7 @@ Battle = {};
   function Status(name, duration, type){
 	  this.name     = name;
 	  this.type     = type;
-	  this.life     = duration;
+	  this.life     = +duration;
   }
 
   function initialize(){
@@ -66,6 +66,10 @@ Battle = {};
       activeCharacter.cycle += Math.floor( activeCharacter.ct / activeCharacter.ap );
       activeCharacter.ct     = activeCharacter.ct % activeCharacter.ap;
     }
+    
+    activeCharacter.statii.forEach(function(status){
+	    countdownStatus(status, activeCharacter);
+    });
   
     function getNextCharacter(){
     
@@ -149,6 +153,31 @@ Battle = {};
 	  return status;
   }
   
+  function getStatus(status, chr){
+    for(var i = 0; i < chr.statii.length; i += 1) {
+        if(chr.statii[i]['name'].toLowerCase() === status.toLowerCase()) {
+            return chr.statii[i];
+        }
+    }
+    return false;
+  }
+  
+  function removeStatus(status, chr){
+  	var status = getStatus(status, chr);
+  	var idx    = chr.statii.indexOf(idx);
+  	
+  	chr.statii.splice(idx, 1);
+  	
+  	return status;
+  }
+  
+  function countdownStatus(status, chr){
+  	status.life--;
+  	
+  	if( status.life === 0 )
+  		removeStatus(status.name, chr)
+  }
+  
   Battle.globalCycle     = globalCycle;
   Battle.characters      = characters;
   Battle.activeCharacter = activeCharacter;
@@ -158,6 +187,8 @@ Battle = {};
   Battle.passTurn        = passTurn;
   Battle.removeCharacter = removeCharacter;
   Battle.addStatus       = addStatus;
+  Battle.getStatus       = getStatus;
+  Battle.removeStatus    = removeStatus;
   
 }(Battle));
 
